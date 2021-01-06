@@ -44,10 +44,23 @@ const App = ({ anecdotes }) => {
     points.current = new Array(anecdotes.length).fill(0)
   }
 
+  const hasVotes = () => {
+    const votes = points.current[selected]
+    if(votes === 0) {
+      return (
+        <p>Does not have votes yet.</p>
+      )
+    } else {
+      return(
+        <p>Has {votes} votes.</p>
+      )
+    }
+  }
   return (
     <div>
       <h1>Anecdote of the day</h1>
       <p>{anecdotes[selected]}</p>
+      {hasVotes()}
       <Button handleClick={nextAnecdote} title="Next anecdote" />
       <Button handleClick={vote} title="Vote" />
       <Button handleClick={restart} title="Restart" />
